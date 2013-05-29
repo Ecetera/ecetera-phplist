@@ -15,6 +15,7 @@ let(:params) {
 		:phplist_group => 'root',
 	} 
 }
+
 it { should contain_class('phplist') }
 
 end

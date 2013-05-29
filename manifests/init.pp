@@ -77,5 +77,4 @@ class phplist (
  $phplist_group = 'root',
 ) {
 
-
 }
