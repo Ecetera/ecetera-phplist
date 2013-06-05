@@ -1,0 +1,35 @@
+{
+  "checksums": {
+    "tests/init.pp": "0099b099be91fa5ee95231a5bec03dfb",
+    "manifests/init.pp": "f8b8cb686fd9e202b0631c29f27fd103",
+    "spec/fixtures/manifests/site.pp": "d41d8cd98f00b204e9800998ecf8427e",
+    "spec/spec_helper.rb": "0db89c9a486df193c0e40095422e19dc",
+    "features/install_phplist.features": "9ed151b116eb39a71192871b61802c4d",
+    "README": "d32a144bc7206ebe5913974004f247ac",
+    "spec/classes/phplist_app_spec.rb": "0ee6f971a2bee5b0f71d0677652f623a",
+    "spec/spec_helper.rb.ok.20130526": "792eeb7aa7edafb93e2bc1d27c5e75c5",
+    "spec/spec.opts": "c407193b3d9028941ef59edd114f5968",
+    "manifests/app.pp": "40efb0f1bf3d486ede2870383268e573",
+    "spec/classes/phplist_db_spec.rb": "312c64a7726a2a83116f015677420658",
+    "spec/spec_helper.rb.orig": "a55d1e6483344f8ec6963fcb2c220372",
+    "Rakefile": "7b078248f914b4c379398a9e47b887af",
+    "manifests/db.pp": "795c4c2bb6a26577697decf6b17146af",
+    "Modulefile": "2ff4dc744853f980a4c0412c69219bb3",
+    "spec/classes/phplist_spec.rb": "2ac1a0ee43bfc2a9e464d4061d7f9991",
+    "templates/config.php.erb": "94835396578c0d98cd767502366325f8"
+  },
+  "license": "Apache License, Version 2.0",
+  "source": "UNKNOWN",
+  "project_page": "UNKNOWN",
+  "types": [
+
+  ],
+  "description": "UNKNOWN",
+  "version": "0.0.1",
+  "summary": "UNKNOWN",
+  "name": "ecetera-phplist",
+  "author": "ecetera",
+  "dependencies": [
+
+  ]
+}

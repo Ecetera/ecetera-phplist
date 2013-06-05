@@ -1,6 +1,4 @@
 class phplist::app (
- $install_dir,
- $install_url,
  $db_name,
  $db_host,
  $db_user,
@@ -8,41 +6,36 @@ class phplist::app (
  $phplist_owner,
  $phplist_group,
  $version,
- $installation_name,
  $table_prefix,
  $usertable_prefix,
+ $install_dir,
+ $installation_name,
  $pageroot,
 ) {
 
  #Got Unknow function don't know how to fix that. Will see later
- #validate_string($install_dir,$install_url,$db_name,$db_host,$db_user,$db_password,$phplist_owner,$phplist_group)
+ validate_string($db_name,$db_host,$db_user,$db_password,$phplist_owner,$phplist_group,$install_dir,$installation_name,$pageroot)
 
- ## Resource defaults
-  File {
-    owner  => $phplist_owner,
-    group  => $phplist_group,
-    mode   => '0644',
+
+  file { 'install_dir':
+      path    => "${install_dir}",
+      ensure  => 'directory',
+      owner   => 'root',
+      group   => 'root',
   }
-
-  file { $install_dir:
-    ensure => directory,
-    recurse => true,
-  }
-
+      
   package { 'phplist':
-    ensure => $version
+    ensure  => $version,
+    require => File['install_dir'],
   }
 
-  file { "config.php":
-    name => "${install_dir}/public_html/lists/config/config.php",
+  file { 'config.php':
+    path => "${install_dir}/config.php",
     owner => $phplist_owner,
     group => $phplist_group,
+    replace => false,
+    content => template('phplist/config.php.erb'),
+    require => File['install_dir']
   }
 
-#  concat { "${install_dir}/public_html/lists/config/config.php":
-#    ensure => present,
-#    content => template('phplist/config.php.erb'),
-#    replace => false,
-#    require => Package['phplist']
-#  }
 }

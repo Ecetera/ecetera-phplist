@@ -1,0 +1,44 @@
+/*
+
+=========================================================================
+
+General settings for language and database
+
+=========================================================================
+
+*/
+
+
+select the language module to use
+# Look for <country>.inc files in the texts directory
+# to find your language
+# this is the language for the frontend pages. In the admin pages you can
+# choose your language by using the dropdown in the pages.
+$language_module = "english.inc";
+
+# what is your Mysql database server
+$database_host = "<% @db_host %>";
+
+# what is the name of the database we are using
+$database_name = "<% @db_name %>";
+
+# who do we log in as?
+$database_user = "<% @db_user %>";
+
+# and what password do we use
+$database_password = '<% @db_password %>';
+
+# if you use multiple installations of phpList you can set this to
+# something to identify this one. it will be prepended to email report
+# subjects
+$installation_name = '<% @installation_name %>';
+if you want a prefix to all your tables, specify it here,
+$table_prefix = "<% @table_prefix %>";
+
+# if you want to use a different prefix to user tables, specify it here.
+# read README.usertables for more information
+$usertable_prefix = "<% @usertable_prefix %>";
+
+# if you change the path to the phpList system, make the change here as well
+# path should be relative to the root directory of your webserver (document root)
+$pageroot = '<% @pageroot %>';
