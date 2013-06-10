@@ -35,7 +35,6 @@ end
 	      :require => 'File[install_dir]'
 	  ) }
 
-	# TODO : Need to test the content with the sample in mysql module  mysql/spec/classes/mysql_config_spec.rb line 155.
 	 it { should contain_file('config.php').with(
 		 :path => "#{params[:install_dir]}/config.php",
 		 :owner => 'root',

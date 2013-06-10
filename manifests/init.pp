@@ -79,6 +79,7 @@ class phplist (
  $install_dir = '/var/www/html/newsletter/public_html/lists/config',
  $installation_name = 'newsletter',
  $pageroot = '/lists',
+ $privileges = ['Select_priv', 'Insert_priv', 'Update_priv', 'Delete_priv','Create_priv'],
 ) {
   class { 'phplist::app':
     db_name           => $db_name,
@@ -93,6 +94,7 @@ class phplist (
     install_dir       => $install_dir,
     installation_name => $installation_name,
     pageroot          => $pageroot,
+
   }
   -> class { 'phplist::db':
     create_db  => $create_db,
@@ -101,5 +103,6 @@ class phplist (
     db_host => $db_host,
     db_user => $db_user,
     db_password => $db_password,
+    privileges        => $privileges,
   }
 }

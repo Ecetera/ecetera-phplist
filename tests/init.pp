@@ -9,3 +9,12 @@
 # Learn more about module testing here: http://docs.puppetlabs.com/guides/tests_smoke.html
 #
 include phplist
+include apache
+# TODO : Use a generic name to identify the phplist and set a link to default value.
+	apache::vhost { 'testphplist.example.com':
+		priority   => '10',
+		vhost_name => '*',
+		port       => '80',
+		docroot    => '/phplist-2.11.9/public_html',
+    require    => Class['phplist']
+	}  
