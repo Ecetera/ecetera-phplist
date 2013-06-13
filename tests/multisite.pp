@@ -8,26 +8,20 @@
 #
 # Learn more about module testing here: http://docs.puppetlabs.com/guides/tests_smoke.html
 #
-# Test a standard phplist installation with RPM
-class { 'apache': } 
-
-class { 'apache::mod::php': }
-
-file { '/var/wwww/html/phplist-2.11.9':
-   ensure => directory,
-}
-
-file { '/var/wwww/html/phplist-2.11.9/public_html':
-   ensure  => directory,
-   require => File['/phplist-2.11.9']
-}
-
+include phplist
+include apache
 # TODO : Use a generic name to identify the phplist and set a link to default value.
 	apache::vhost { 'testphplist.example.com':
 		priority   => '10',
 		vhost_name => '*',
 		port       => '80',
-		docroot    => '/var/wwww/html/phplist-2.11.9/public_html',
-    require    => File['/var/wwww/html/phplist-2.11.9/public_html'],
-	} -> 
-  class { 'phplist': } 
+		docroot    => '/phplist-2.11.9/public_html',
+    require    => Class['phplist']
+	}  
+
+  $directories = ['/var/www/html/newsletter', '/var/www/html/newsletter/public_html', '/var/www/html/newsletter/public_html/lists' ]
+
+    file { $directories: 
+      ensure => 'directory',
+      require => [ Class['apache']]
+    }

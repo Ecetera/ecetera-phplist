@@ -67,6 +67,7 @@
 class phplist (
  $create_db  = true,
  $create_db_user = true,
+ $multisite = false,
  $db_name = 'phplist',
  $db_host = 'localhost',
  $db_user = 'phplist',
@@ -75,13 +76,17 @@ class phplist (
  $phplist_group = 'root',
  $table_prefix = 'phplist_',
  $usertable_prefix = 'phplist_user_',
- $version = '2.11.9-1',
- $install_dir = '/var/www/html/newsletter/public_html/lists/config',
+ $version = '2.10.5',
+ $release = '1',
+ $install_dir = '/phplist-2.11.9/public_html/lists/config',
  $installation_name = 'newsletter',
  $pageroot = '/lists',
  $privileges = ['Select_priv', 'Insert_priv', 'Update_priv', 'Delete_priv','Create_priv'],
+ $adminpages = '/lists/admin',
+
 ) {
   class { 'phplist::app':
+    multisite         => $multisite,
     db_name           => $db_name,
     db_host           => $db_host,
     db_user           => $db_user,
@@ -91,9 +96,11 @@ class phplist (
     table_prefix      => $table_prefix,
     usertable_prefix  => $usertable_prefix,
     version           => $version,
+    release           => $release,
     install_dir       => $install_dir,
     installation_name => $installation_name,
     pageroot          => $pageroot,
+    adminpages        => $adminpages,
 
   }
   -> class { 'phplist::db':

@@ -14,6 +14,10 @@ let(:params) {
                 :table_prefix => 'phplist_',
 		:installation_name => 'newsletter',
                 :pageroot => '/lists',
+                :multisite => true,
+		:version => '2.10.5',
+                :release => '1',
+                :adminpages => '/lists/admin',
 	} 
 }
  context 'standard conditions' do
