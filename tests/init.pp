@@ -13,13 +13,13 @@ class { 'apache': }
 
 class { 'apache::mod::php': }
 
-file { '/var/wwww/html/phplist-2.11.9':
+file { '/var/www/html/phplist-2.11.9':
    ensure => directory,
 }
 
-file { '/var/wwww/html/phplist-2.11.9/public_html':
+file { '/var/www/html/phplist-2.11.9/public_html':
    ensure  => directory,
-   require => File['/phplist-2.11.9']
+   require => File['/var/www/html/phplist-2.11.9']
 }
 
 # TODO : Use a generic name to identify the phplist and set a link to default value.
@@ -27,7 +27,10 @@ file { '/var/wwww/html/phplist-2.11.9/public_html':
 		priority   => '10',
 		vhost_name => '*',
 		port       => '80',
-		docroot    => '/var/wwww/html/phplist-2.11.9/public_html',
-    require    => File['/var/wwww/html/phplist-2.11.9/public_html'],
+		docroot    => '/var/www/html/phplist-2.11.9/public_html',
+    require    => File['/var/www/html/phplist-2.11.9/public_html'],
 	} -> 
-  class { 'phplist': } 
+  class { 'phplist': 
+   version     => '2.11.9',
+   install_dir => '/var/www/html/phplist-2.11.9/public_html/lists/config'
+  } 

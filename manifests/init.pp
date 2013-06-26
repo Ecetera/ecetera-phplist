@@ -53,16 +53,15 @@
 # === Examples
 #
 #  class { phplist:
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ]
 #  }
 #
 # === Authors
 #
-# Author Name <author@domain.com>
+# Author Name <issa.moussa@ecetera.com.au>
 #
 # === Copyright
 #
-# Copyright 2013 Your name here, unless otherwise noted.
+# Copyright 2013 Issa Moussa
 #
 class phplist (
  $create_db  = true,
@@ -78,11 +77,14 @@ class phplist (
  $usertable_prefix = 'phplist_user_',
  $version = '2.10.5',
  $release = '1',
- $install_dir = '/phplist-2.11.9/public_html/lists/config',
+ $install_dir = '/var/www/html',
+ $config_dir = '/var/www/html/phplist-2.10.5/public_html/lists/config',
  $installation_name = 'newsletter',
  $pageroot = '/lists',
  $privileges = ['Select_priv', 'Insert_priv', 'Update_priv', 'Delete_priv','Create_priv'],
  $adminpages = '/lists/admin',
+ $install_type = 'tar',
+ $url = 'http://sourceforge.net/projects/phplist/files/phplist/2.11.9/phplist-2.11.9.tgz/download',
 
 ) {
   class { 'phplist::app':
@@ -98,9 +100,12 @@ class phplist (
     version           => $version,
     release           => $release,
     install_dir       => $install_dir,
+    config_dir        => $config_dir,
     installation_name => $installation_name,
     pageroot          => $pageroot,
     adminpages        => $adminpages,
+    install_type      => $install_type,
+    url               => $url,
 
   }
   -> class { 'phplist::db':

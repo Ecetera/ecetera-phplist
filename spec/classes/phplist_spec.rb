@@ -12,12 +12,16 @@ let(:params) {
 		:phplist_owner => 'root',
 		:phplist_group => 'root',
                 :table_prefix => 'phplist_',
+		:install_dir => '/var/www/',
+		:config_dir => '/var/www/',
 		:installation_name => 'newsletter',
                 :pageroot => '/lists',
                 :multisite => true,
 		:version => '2.10.5',
                 :release => '1',
                 :adminpages => '/lists/admin',
+		:install_type => 'tar',
+		:url => 'http://sourceforge.net/projects/phplist/files/phplist/2.11.9/phplist-2.11.9.tgz/download'
 	} 
 }
  context 'standard conditions' do
