@@ -8,7 +8,7 @@
 #
 # Learn more about module testing here: http://docs.puppetlabs.com/guides/tests_smoke.html
 #
-# Test a standard phplist installation with RPM
+# Test a standard phplist installation with an archive
 class { 'apache': } 
 
 class { 'apache::mod::php': }
@@ -20,6 +20,11 @@ file { '/var/www/html/phplist-2.11.9':
 file { '/var/www/html/phplist-2.11.9/public_html':
    ensure  => directory,
    require => File['/var/www/html/phplist-2.11.9']
+}
+
+file { '/var/www/html/phplist-2.11.9/public_html/lists':
+   ensure  => directory,
+   require => File['/var/www/html/phplist-2.11.9/public_html']
 }
 
 # TODO : Use a generic name to identify the phplist and set a link to default value.

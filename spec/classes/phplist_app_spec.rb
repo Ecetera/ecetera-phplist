@@ -163,6 +163,14 @@ end
 		if ! params[:multisite]
                    case 
                    when params[:install_type] == 'tar'
+
+		    should contain_file('install_dir').with(
+			:path => "#{params[:install_dir]}",
+			:ensure => 'directory',
+			:owner => 'root',
+			:group => 'root'
+			)	
+
 		    should contain_archive('phplist').with(
 		        :ensure => 'present',
 			:url => "#{params[:url]}",

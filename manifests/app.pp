@@ -23,12 +23,7 @@ class phplist::app (
  # TODO : validte the release as number
 
  if $multisite { 
-   file { 'install_dir':
-     path    => "${install_dir}",
-     ensure  => 'directory',
-     owner   => 'root',
-     group   => 'root',
-   }
+
 
    package { 'phplist':
      ensure  => "${version}-${release}",
@@ -62,12 +57,20 @@ class phplist::app (
       }
 
      tar: {
+            file { 'install_dir':
+              path    => "${install_dir}",
+                      ensure  => 'directory',
+                      owner   => 'root',
+                      group   => 'root',
+            }
+
             archive { 'phplist':
               ensure  => 'present',
               url     => $url,
               target  => $install_dir,
               require => File['install_dir'],
             }
+
             file { 'config.php':
               path    => "${install_dir}/config.php",
                       owner   => $phplist_owner,
