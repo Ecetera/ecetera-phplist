@@ -164,25 +164,18 @@ end
                    case 
                    when params[:install_type] == 'tar'
 
-		    should contain_file('install_dir').with(
-			:path => "#{params[:install_dir]}",
-			:ensure => 'directory',
-			:owner => 'root',
-			:group => 'root'
-			)	
 
-		    should contain_archive('phplist').with(
+		    should contain_archive("phplist-#{params[:version]}").with(
 		        :ensure => 'present',
-			:url => "#{params[:url]}",
-			:target => "#{params[:install_dir]}"
+			:url => "#{params[:url]}"
 		        )
 
 		    should contain_file('config.php').with(
-				    :path => "#{params[:install_dir]}/config.php",
+				    :path => "#{params[:config_dir]}/config.php",
 				    :owner => 'root',
 				    :group => 'root',
 				    :replace => 'true',
-				    :require => 'Archive[phplist]'
+				    :require => "Archive[phplist-#{params[:version]}]"
 				    )
                    end
 	        end 

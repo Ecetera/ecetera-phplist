@@ -57,32 +57,23 @@ class phplist::app (
       }
 
      tar: {
-            file { 'install_dir':
-              path    => "${install_dir}",
-                      ensure  => 'directory',
-                      owner   => 'root',
-                      group   => 'root',
-            }
 
-            archive { 'phplist':
+            archive { "phplist-${version}":
               ensure  => 'present',
               url     => $url,
               target  => $install_dir,
-              require => File['install_dir'],
             }
 
             file { 'config.php':
-              path    => "${install_dir}/config.php",
+              path    => "${config_dir}/config.php",
                       owner   => $phplist_owner,
                       group   => $phplist_group,
                       replace => true,
                       content => template("phplist/config.php-${version}-${release}.erb"),
-                      require => Archive['phplist'],
+                      require => Archive["phplist-${version}"],
             }
       }
    }
-
-
 
  }
 
