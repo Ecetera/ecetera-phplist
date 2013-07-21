@@ -4,22 +4,36 @@
 #
 # === Parameters
 #
-# Document parameters here.
+# [*table_prefix*]
+# Specifies the table prefix of the phplist database tables. Default: phplist_
+
+# [*usertable_prefix*]
+# Specifies the table prefix of the phplist database tables. Default: phplist_user_
+
+# [*installation_name*]
+# Specifies the phplist installation name. Default: newsletter
+
+# [*pageroot*]
+# Specifies the pageroot parameter of phplist. Default: /lists
+
+# [*privileges*]
+# Specifies the phplist database user privileges. Default: '['Select_priv', 'Insert_priv', 'Update_priv', 'Delete_priv','Create_priv']'
+
+# [*adminpages*]
+# Specifies the adminpages parameter of phplist. Default: /lists/admin
+
+
+# === Variables
 #
-# [*install_dir*]
-# Specifies the directory into which phplist should be installed. Default: '/var/www/html/phplist'
 #
-# [*install_url*]
-# Specifies the url from which the phplist tarball should be downloaded. Default: 'http://www.phplist.com/download'
+# [*install_type*]
+# Specifies what type of phplist package to install. Default: 'true'
 #
-# [*created_db*]
-# Specifies whether to create the db or not. Default: 'true'
-#
-# [*created_db_user*]
-# Specifies whether to create the db user oor not. Default: 'true'
-#
-# [*db_name*]
-# Specifies the database name which the phplist module should be configured to use. Default: 'phplist'
+# [*version*]
+# Specifies the version of the phplist applications to install. Default: 2.11.9
+
+# [*release*]
+# Specifies the release number of the phplist rpm. Default: 1
 
 # [*db_host*]
 # Specifies the database host to connect to. Default: 'localhost'
@@ -36,23 +50,32 @@
 # [*phplist_group*]
 # Specifies the group of the phplist files. Default: 0 (*BSD/Darwin compatible GID)
 
+# [*install_dir*]
+# Specifies the directory into which phplist should be installed. Default: '/var/www/html'
 
+# [*config_dir*]
+# Specifies the directory into which phplist should be installed. Default: '/var/www/html/phplist-2.10.5/public_html/lists/config'
+#
+# [*url*]
+# Specifies the url from which the phplist tarball should be downloaded. Default: 'http://www.phplist.com/download'
+#
+# [*created_db*]
+# Specifies whether to create the db or not. Default: 'true'
+#
+# [*created_db_user*]
+# Specifies whether to create the db user oor not. Default: 'true'
+#
+# [*db_name*]
+# Specifies the database name which the phplist module should be configured to use. Default: 'phplist'
 
-
-# === Variables
-#
-# Here you should define a list of variables that this module would require.
-#
-# [*sample_variable*]
-#   Explanation of how this variable affects the funtion of this class and if it
-#   has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#   External Node Classifier as a comma separated list of hostnames." (Note,
-#   global variables should not be used in preference to class parameters  as of
-#   Puppet 2.6.)
-#
 # === Examples
 #
-#  class { phplist:
+#class { 'phplist':
+#  version      => '2.11.9',
+#  install_dir  => '/var/www/html/phplist',
+#  config_dir   => '/var/www/html/phplist/phplist-2.11.9/public_html/lists/config',
+#  install_type => 'tar',
+#  url          => 'http://download.example.com/phplist-2.11.9.tar.gz',
 #  }
 #
 # === Authors
@@ -64,27 +87,27 @@
 # Copyright 2013 Issa Moussa
 #
 class phplist (
- $create_db  = true,
- $create_db_user = true,
- $multisite = false,
- $db_name = 'phplist',
- $db_host = 'localhost',
- $db_user = 'phplist',
- $db_password = 'phplist',
- $phplist_owner = 'root',
- $phplist_group = 'root',
- $table_prefix = 'phplist_',
- $usertable_prefix = 'phplist_user_',
- $version = '2.10.5',
- $release = '1',
- $install_dir = '/var/www/html',
- $config_dir = '/var/www/html/phplist-2.10.5/public_html/lists/config',
- $installation_name = 'newsletter',
- $pageroot = '/lists',
- $privileges = ['Select_priv', 'Insert_priv', 'Update_priv', 'Delete_priv','Create_priv'],
- $adminpages = '/lists/admin',
- $install_type = 'tar',
- $url = 'http://sourceforge.net/projects/phplist/files/phplist/2.11.9/phplist-2.11.9.tgz/download',
+  $create_db  = true,
+  $create_db_user = true,
+  $multisite = false,
+  $db_name = 'phplist',
+  $db_host = 'localhost',
+  $db_user = 'phplist',
+  $db_password = 'phplist',
+  $phplist_owner = 'root',
+  $phplist_group = 'root',
+  $table_prefix = 'phplist_',
+  $usertable_prefix = 'phplist_user_',
+  $version = '2.11.9',
+  $release = '1',
+  $install_dir = '/var/www/html',
+  $config_dir = '/var/www/html/phplist-2.10.5/public_html/lists/config',
+  $installation_name = 'newsletter',
+  $pageroot = '/lists',
+  $privileges = ['Select_priv', 'Insert_priv', 'Update_priv', 'Delete_priv','Create_priv'],
+  $adminpages = '/lists/admin',
+  $install_type = 'tar',
+  $url = 'http://sourceforge.net/projects/phplist/files/phplist/2.11.9/phplist-2.11.9.tgz/download',
 
 ) {
   class { 'phplist::app':
@@ -107,14 +130,14 @@ class phplist (
     install_type      => $install_type,
     url               => $url,
 
-  }
-  -> class { 'phplist::db':
-    create_db  => $create_db,
+  } ->
+  class { 'phplist::db':
+    create_db      => $create_db,
     create_db_user => $create_db_user,
-    db_name => $db_name,
-    db_host => $db_host,
-    db_user => $db_user,
-    db_password => $db_password,
-    privileges        => $privileges,
+    db_name        => $db_name,
+    db_host        => $db_host,
+    db_user        => $db_user,
+    db_password    => $db_password,
+    privileges     => $privileges,
   }
 }
