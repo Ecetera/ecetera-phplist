@@ -1,17 +1,70 @@
-phplist
+Ecetera module for Phplist
+==========================
 
-This is the phplist module.
+Phplist is a popular open source newsletter manager.
+This module install the application and the MySQL database.
+After the installation, please go to the admins page.
+For example
+http://testphplist.example.com/phplist/phplist-2.11.9/public_html/lists/admin
+You must install and configure apache configuration.
+
+This module has been tested on Centos 6.3. It should work on any RedHat kind
+distribution and must be tested on Debian flavour distribution.
+
+The module does not support phplist multisite yet. Coming soon :-)
+
+Requirements
+------------
+- Linux
+- Apache web server
+- PHP version 4.3.x or higher
+- MySQL version 4.0 or higher
+
+Basic usage
+-----------
+
+To install Phplist
+
+  class { 'phplist': 
+   version      => '2.11.9',
+   url          => 'http://download.example.com/phplist-2.11.9.tar.gz',
+  }  
+
+Configure phplist
+-----------------
+
+  class { 'phplist': 
+   version      => '2.11.9',
+   install_dir  => '/var/www/html/phplist',
+   config_dir   => '/var/www/html/phplist/phplist-2.11.9/public_html/lists/config',
+   install_type => 'tar',
+   url          => 'http://download.example.com/phplist-2.11.9.tar.gz',
+  }  
+
+Dependencies
+------------
+
+Some functionality is dependent on other modules:
+
+- [stdlib](https://github.com/puppetlabs/puppetlabs-stdlib)
+- [mysql](https://forge.puppetlabs.com/puppetlabs/mysql)
+- [archive](https://forge.puppetlabs.com/smarchive/archive)
 
 License
 -------
 
+All changes copyright (c) 2012, 2013 Issa Moussa 
+
+This script is licensed under the Apache License, Version 2.0.
+
+See http://www.apache.org/licenses/LICENSE-2.0.html for the full license text.
 
 Contact
 -------
-
+Please send email to issa.moussa@ecetera.com.au for any question.
 
 Support
 -------
 
 Please log tickets and issues at our [Projects site](http://projects.example.com)
-http://sourceforge.net/projects/phplist/files/phplist/2.10.19/phplist-2.10.19.tgz/download
+http://sourceforge.net/projects/phplist/files/phplist/2.11.9/phplist-2.11.9.tgz/download
