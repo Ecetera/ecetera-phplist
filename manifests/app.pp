@@ -29,13 +29,13 @@
 # [*release*]
 # Specifies the release number of the phplist rpm. Default: 1
 
-# [*db_host*]
+# [*database_host*]
 # Specifies the database host to connect to. Default: 'localhost'
 
-# [*db_user*]
+# [*database_user*]
 # Specifies the database user. Default: 'phplist'
 
-# [*db_password*]
+# [*database_password*]
 # Specifies the database user's password in plaintext. Default: 'phplist'
 
 # [*phplist_owner*]
@@ -57,10 +57,10 @@
 # Specifies the database name which the phplist module should be configured to use. Default: 'phplist'
 class phplist::app (
   $multisite = false,
-  $db_name = 'phplist',
-  $db_host = 'localhost',
-  $db_user = 'phplist',
-  $db_password = 'phplist',
+  $database_name = 'phplist',
+  $database_host = 'localhost',
+  $database_user = 'phplist',
+  $database_password = 'phplist',
   $phplist_owner = 'root',
   $phplist_group = 'root',
   $version = '2.11.9',
@@ -74,9 +74,13 @@ class phplist::app (
   $adminpages = '/lists/admin',
   $install_type = 'tar',
   $url = 'http://sourceforge.net/projects/phplist/files/phplist/2.11.9/phplist-2.11.9.tgz/download',
-) {
+) inherits phplist::params {
+  
+  $language_module = $phplist::params::language_module 
+  $userhistory_systeminfo = $phplist::params::userhistory_systeminfo
+
   validate_bool($multisite)
-  validate_string($db_name,$db_host,$db_user,$db_password,$phplist_owner,$phplist_group,$install_dir,$installation_name,$pageroot,$adminpages,$install_type,$url,$config_dir)
+  validate_string($db_name,$db_host,$db_user,$database_password,$phplist_owner,$phplist_group,$install_dir,$installation_name,$pageroot,$adminpages,$install_type,$url,$config_dir,$language_module)
   # TODO : validte the release as number
 
   if $multisite {

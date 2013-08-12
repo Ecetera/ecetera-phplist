@@ -16,24 +16,24 @@ General settings for language and database
 # to find your language
 # this is the language for the frontend pages. In the admin pages you can
 # choose your language by using the dropdown in the pages.
-$language_module = "english.inc";
+$language_module = "<%= language_module %>";
 
 # what is your Mysql database server
-$database_host = "<%= db_host %>";
+$database_host = "<%= database_host %>";
 
 # what is the name of the database we are using
-$database_name = "<%= db_name %>";
+$database_name = "<%= database_name %>";
 
 # who do we log in as?
-$database_user = "<%= db_user %>";
+$database_user = "<%= database_user %>";
 
 # and what password do we use
-$database_password = '<%= db_password %>';
+$database_password = "<%= database_password %>";
 
 # if you use multiple installations of phpList you can set this to
 # something to identify this one. it will be prepended to email report
 # subjects
-$installation_name = '<%= installation_name %>';
+$installation_name = "<%= installation_name %>";
 #if you want a prefix to all your tables, specify it here,
 $table_prefix = "<%= table_prefix %>";
 
@@ -43,8 +43,8 @@ $usertable_prefix = "<%= usertable_prefix %>";
 
 # if you change the path to the phpList system, make the change here as well
 # path should be relative to the root directory of your webserver (document root)
-$pageroot = '<%= pageroot %>';
-$adminpages = '<%= adminpages %>';
+$pageroot = "<%= pageroot %>";
+$adminpages = "<%= adminpages %>";
 
 /*
 
@@ -68,7 +68,7 @@ Settings for handling bounces
 
 # Handling bounces. Check README.bounces for more info
 # This can be 'pop' or 'mbox'
-$bounce_protocol = 'pop';
+$bounce_protocol = "<%= bounce_protocol %>";
 
 # set this to 0, if you set up a cron to download bounces regularly by using the
 # commandline option. If this is 0, users cannot run the page from the web
@@ -77,35 +77,35 @@ $bounce_protocol = 'pop';
 define ("MANUALLY_PROCESS_BOUNCES",1);
 
 # when the protocol is pop, specify these three
-$bounce_mailbox_host = 'localhost';
-$bounce_mailbox_user = 'popuser';
-$bounce_mailbox_password = 'password';
+$bounce_mailbox_host = "<%= bounce_mailbox_host %>";
+$bounce_mailbox_user = "<%= bounce_mailbox_user %>";
+$bounce_mailbox_password = "<%= bounce_mailbox_password %>";
 
 # the "port" is the remote port of the connection to retrieve the emails
 # the default should be fine but if it doesn't work, you can try the second
 # one. To do that, add a # before the first line and take off the one before the
 # second line
 
-$bounce_mailbox_port = "110/pop3/notls";
+$bounce_mailbox_port = "<%= bounce_mailbox_port %>";
 #$bounce_mailbox_port = "110/pop3";
 
 # when the protocol is mbox specify this one
 # it needs to be a local file in mbox format, accessible to your webserver user
-$bounce_mailbox = '/var/spool/mail/listbounces';
+$bounce_mailbox = "<%= bounce_mailbox %>";
 
 # set this to 0 if you want to keep your messages in the mailbox. this is potentially
 # a problem, because bounces will be counted multiple times, so only do this if you are
 # testing things.
-$bounce_mailbox_purge = 1;
+$bounce_mailbox_purge = "<%= bounce_mailbox_purge %>";
 
 # set this to 0 if you want to keep unprocessed messages in the mailbox. Unprocessed
 # messages are messages that could not be matched with a user in the system
 # messages are still downloaded into PHPlist, so it is safe to delete them from
 # the mailbox and view them in PHPlist
-$bounce_mailbox_purge_unprocessed = 1;
+$bounce_mailbox_purge_unprocessed = "<%= bounce_mailbox_purge_unprocessed %>";
 
 # how many bounces in a row need to have occurred for a user to be marked unconfirmed
-$bounce_unsubscribe_threshold = 5;
+$bounce_unsubscribe_threshold = "<%= bounce_unsubscribe_threshold %>";
 
 
 /*
@@ -123,14 +123,14 @@ Security related settings
 # you will be able to add administrators who control their own lists
 # default login is "admin" with password "phplist"
 #
-$require_login = 1;
+$require_login = "<%= require_login %>";
 
 # if you use login, how many lists can be created per administrator
 define("MAXLIST",1);
 
 # if you use commandline, you will need to identify the users who are allowed to run
 # the script. See README.commandline for more info
-$commandline_users = array("admin");
+$commandline_users = "<%= commandline_users %>";
 # or you can use the following to disable the check (take off the # in front of the line)
 # $commandline_users = array();
 
@@ -153,7 +153,7 @@ define("UNSUBSCRIBE_JUMPOFF",0);
 # their unsubscription. In order for that email to actually go out, a gracetime
 # needs to be set otherwise it will never go out. The default of 5 minutes should
 # be fine, but you can increase it if you experience problems
-$blacklist_gracetime = 5;
+$blacklist_gracetime = "<%= blacklist_gracetime %>";
 
 # to increase security the session of a user is checked for the IP address
 # this needs to be the same for every request. This may not work with
@@ -171,7 +171,7 @@ define("ENCRYPTPASSWORD",0);
 # Check for host of email entered for subscription
 # Do not use it if your server is not 24hr online
 # make the 0 a 1, if you want to use it
-$check_for_host = 0;
+$check_for_host = "<%= check_for_host %>";
 
 /*
 
@@ -215,11 +215,7 @@ define("WORKAROUND_OUTLOOK_BUG",0);
 # want to log. These are the ones that are found in the $_SERVER and the $_ENV
 # variables of PHP. check http://www.php.net/manual/en/language.variables.predefined.php
 # the values are different per system, but these ones are quite common.
-$userhistory_systeminfo = array(
-  'HTTP_USER_AGENT',
-  'HTTP_REFERER',
-  'REMOTE_ADDR'
-);
+$userhistory_systeminfo = "<%= userhistory_systeminfo %>";
 
 # add spamblock
 # if you set this to 1, phplist will try to check if the subscribe attempt is a spambot trying to send
@@ -575,7 +571,7 @@ define("PLUGIN_ROOTDIR","/home/me/phplistplugins");
 # it also needs to be a full path, not a relative one
 # for secutiry reasons it is best if this directory is not public (ie below
 # your website document root)
-$attachment_repository = '/tmp';
+$attachment_repository = "<%= attachment_repository %>";
 
 # if you want to be able to send your messages as PDF attachments, you need to install
 # FPDF (http://www.fpdf.org) and set these variables accordingly
@@ -589,7 +585,7 @@ $attachment_repository = '/tmp';
 
 # the mime type for the export files. You can try changing this to
 # application/vnd.ms-excel to make it open automatically in excel
-$export_mimetype = 'application/csv';
+$export_mimetype = "<%= export_mimetype %>";
 
 # if you want to use export format optimized for Excel, set this one to 1
 define("EXPORT_EXCEL",0);
@@ -628,7 +624,7 @@ define("PHPMAILERHOST",'');
 # open_basedir set to allow access to this directory. Linux users can leave it as it is.
 # this directory is used for all kinds of things, mostly uploading of files (like in
 # import), creating PDFs and more
-$tmpdir = '/tmp';
+$tmpdir = "<%= tmpdir %>";
 
 # if you are on Windoze, and/or you are not using apache, in effect when you are getting
 # "Method not allowed" errors you will want to uncomment this
@@ -639,7 +635,7 @@ $tmpdir = '/tmp';
 # select the database module to use
 # anyone wanting to submit other database modules is
 # very welcome!
-$database_module = "mysql.inc";
+$database_module = "<%= database_module %>";
 
 # you can store sessions in the database instead of the default place by assigning
 # a tablename to this value. The table will be created and will not use any prefixes
@@ -655,6 +651,6 @@ $database_module = "mysql.inc";
 #$adodb_driver = 'mysql';
 
 # if you want more trouble, make this 63 (very unlikely you will like the result)
-$error_level = error_reporting(0);
+$error_level = "<%= error_level %>";
 
 ?>

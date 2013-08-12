@@ -35,13 +35,13 @@
 # [*release*]
 # Specifies the release number of the phplist rpm. Default: 1
 
-# [*db_host*]
+# [*database_host*]
 # Specifies the database host to connect to. Default: 'localhost'
 
-# [*db_user*]
+# [*database_user*]
 # Specifies the database user. Default: 'phplist'
 
-# [*db_password*]
+# [*database_password*]
 # Specifies the database user's password in plaintext. Default: 'phplist'
 
 # [*phplist_owner*]
@@ -65,7 +65,7 @@
 # [*created_db_user*]
 # Specifies whether to create the db user oor not. Default: 'true'
 #
-# [*db_name*]
+# [*database_name*]
 # Specifies the database name which the phplist module should be configured to use. Default: 'phplist'
 
 # === Examples
@@ -112,10 +112,10 @@ class phplist (
 ) {
   class { 'phplist::app':
     multisite         => $multisite,
-    db_name           => $db_name,
-    db_host           => $db_host,
-    db_user           => $db_user,
-    db_password       => $db_password,
+    database_name     => $database_name,
+    database_host     => $database_host,
+    database_user     => $database_user,
+    database_password => $database_password,
     phplist_owner     => $phplist_owner,
     phplist_group     => $phplist_group,
     table_prefix      => $table_prefix,
@@ -132,12 +132,12 @@ class phplist (
 
   } ->
   class { 'phplist::db':
-    create_db      => $create_db,
-    create_db_user => $create_db_user,
-    db_name        => $db_name,
-    db_host        => $db_host,
-    db_user        => $db_user,
-    db_password    => $db_password,
-    privileges     => $privileges,
+    create_db           => $create_db,
+    create_db_user      => $create_db_user,
+    database_name       => $database_name,
+    database_host       => $database_host,
+    database_user       => $database_user,
+    database_password   => $database_password,
+    privileges          => $privileges,
   }
 }
