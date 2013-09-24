@@ -76,15 +76,17 @@
 #  config_dir   => '/var/www/html/phplist/phplist-2.11.9/public_html/lists/config',
 #  install_type => 'tar',
 #  url          => 'http://download.example.com/phplist-2.11.9.tar.gz',
-#  }
+#  create_db    => true,
+#  create_db_user => true,
+#}
 #
 # === Authors
 #
-# Author Name <issa.moussa@ecetera.com.au>
+# Author Name <comozo@gmail.com>
 #
 # === Copyright
 #
-# Copyright 2013 Issa Moussa
+# Copyright 2013 comozo
 #
 class phplist (
   $create_db  = true,
