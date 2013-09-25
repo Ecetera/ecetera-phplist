@@ -82,7 +82,7 @@
 #
 # === Authors
 #
-# Author Name <comozo@gmail.com>
+# comozo
 #
 # === Copyright
 #
